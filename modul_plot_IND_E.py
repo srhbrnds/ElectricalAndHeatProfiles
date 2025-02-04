@@ -84,7 +84,7 @@ def plot_layout(new_colors, labels, y_plot, x_plot, xtick):
 
     plt.xticks(x_plot[::xtick], fontsize=18, rotation = 45) #x_plot[::96].str[:10]
     plt.yticks(fontsize=18)
-    plt.legend(reversed(plt.legend().legendHandles), reversed(labels), loc='upper right', fontsize=16)
+    plt.legend(reversed(plt.legend().legend_handles), reversed(labels), loc='upper right', fontsize=16)
     plt.xlim(left=0, xmax=max(x_plot))
     plt.ylim(bottom=0, top=220) #optional
     plt.grid()

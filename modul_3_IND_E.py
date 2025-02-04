@@ -34,9 +34,9 @@ def modul_3(year):
     
     for i in list_holidays['date']:
         if datetime.date.weekday(i) == 1:
-            list_holidays=list_holidays.append({'date':(i + datetime.timedelta(days = -1)), 'name':'Brückentag'}, ignore_index=True)
+            list_holidays=list_holidays._append({'date':(i + datetime.timedelta(days = -1)), 'name':'Brückentag'}, ignore_index=True)
         elif datetime.date.weekday(i) == 3:
-            list_holidays=list_holidays.append({'date':(i + datetime.timedelta(days = 1)), 'name':'Brückentag'}, ignore_index=True)
+            list_holidays=list_holidays._append({'date':(i + datetime.timedelta(days = 1)), 'name':'Brückentag'}, ignore_index=True)
        
 
     
@@ -92,7 +92,7 @@ def modul_3(year):
 """Space heating is modeled by seasonality factors"""
 def seasonality(year, year_list, array_load_type, weekday_2, saturday_2, sunday_2, holiday_2, constant_2, path):    # With seasonality
 
-    month_factor = pd.read_excel(path+'\\HeatingDegreeDays.xlsx'.format(), sheet_name='HDD') 
+    month_factor = pd.read_excel(path+'/HeatingDegreeDays.xlsx'.format(), sheet_name='HDD')
     month_factor = month_factor.iloc[0][1:13]
     
     df = pd.DataFrame(dtype=float)
@@ -101,7 +101,7 @@ def seasonality(year, year_list, array_load_type, weekday_2, saturday_2, sunday_
     for i in range(len(year_list)):
         dayprofile_3 = dict_load_type[array_load_type[i]].copy()
         dayprofile_3['Raumwärme'] = dayprofile_3['Raumwärme']*month_factor[year_list[i].month-1]
-        df=df.append(dayprofile_3, ignore_index=True)    
+        df=df._append(dayprofile_3, ignore_index=True)
             
     idx = pd.date_range(datetime.datetime(year,1,1,0,0),datetime.datetime(year,12,31,23,45), freq="15min" )    
     df.index = idx

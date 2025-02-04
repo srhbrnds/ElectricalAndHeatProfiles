@@ -100,10 +100,10 @@ def modul_1_th(industry_number, PATH):
        
     """Input 1: Normierte Tageslastprofile Load_profiles_enduser.xlsx """
         
-    profiles_weekday = pd.read_excel(PATH+'\\Thermal\\Load_profiles_daytypes.xlsx', sheet_name='Week_day', index_col=0)
-    profiles_saturday = pd.read_excel(PATH+'\\Thermal\\Load_profiles_daytypes.xlsx', sheet_name='Saturday', index_col=0) 
-    profiles_sunday = pd.read_excel(PATH+'\\Thermal\\Load_profiles_daytypes.xlsx', sheet_name='Sunday', index_col=0)
-    profiles_holiday = pd.read_excel(PATH+'\\Thermal\\Load_profiles_daytypes.xlsx', sheet_name='Holiday', index_col=0)
+    profiles_weekday = pd.read_excel(PATH+'/Thermal/Load_profiles_daytypes.xlsx', sheet_name='Week_day', index_col=0)
+    profiles_saturday = pd.read_excel(PATH+'/Thermal/Load_profiles_daytypes.xlsx', sheet_name='Saturday', index_col=0)
+    profiles_sunday = pd.read_excel(PATH+'/Thermal/Load_profiles_daytypes.xlsx', sheet_name='Sunday', index_col=0)
+    profiles_holiday = pd.read_excel(PATH+'/Thermal/Load_profiles_daytypes.xlsx', sheet_name='Holiday', index_col=0)
     
     profiles_constant = profiles_weekday.copy()
     profiles_constant.loc[:,:] =1
@@ -111,7 +111,7 @@ def modul_1_th(industry_number, PATH):
     
     """Input 2: Tabelle mit allen Informationen zu Industrietypen"""
     
-    all_info_wz = pd.read_excel(PATH+'\\Thermal\\All_info_industry_types_thermal.xlsx'.format()) 
+    all_info_wz = pd.read_excel(PATH+'/Thermal/All_info_industry_types_thermal.xlsx'.format())
     all_info_wz.dropna(how='all',axis=0, inplace=True)
     all_info_wz.dropna(how='all',axis=1, inplace=True)
     all_info_wz.fillna(0, inplace=True)
@@ -121,7 +121,7 @@ def modul_1_th(industry_number, PATH):
     
     data_industry_type = all_info_wz[all_info_wz.industry_number.eq(industry_number)] #filters the row with specific industry_wz
     energy_enduser_industry_type = data_industry_type.iloc[:,3:9] #extracts temp range values
-    energy_enduser_industry_type = energy_enduser_industry_type.astype(np.float)
+    energy_enduser_industry_type = energy_enduser_industry_type.astype(np.float64)
 
 
     """ERSTELLUNG normierter Tageslastprofile"""
